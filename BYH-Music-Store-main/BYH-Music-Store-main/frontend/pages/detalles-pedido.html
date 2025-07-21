@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Pedido - BYH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-tienda.css">
+    <link rel="stylesheet" href="../css/style-detalles-pedido.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        
+        @media (max-width: 768px) {
+            .order-details {
+                grid-template-columns: 1fr;
+            }
+            
+            .summary-actions {
+                flex-direction: column;
+            }
+            
+            .btn-primary, .btn-secondary {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header se cargará aquí por load-components.js -->
+    
+    <main>
+      <div class="container">
+        <div class="order-container">
+        <div class="order-header">
+            <h1>¡Gracias por tu compra!</h1>
+            <p>Tu pedido ha sido confirmado</p>
+            <div class="order-status">
+                <i class="fas fa-check-circle"></i>
+                <span>Pedido confirmado #<span id="order-number">123456</span></span>
+            </div>
+        </div>
+        
+        <div class="order-details">
+            <div class="order-items">
+                <h2>Resumen del pedido</h2>
+                <div id="order-items-list">
+                    <!-- Los productos se agregarán dinámicamente aquí -->
+                </div>
+            </div>
+            
+            <div class="order-summary">
+                <div class="summary-section">
+                    <h3 class="summary-title">Resumen del pedido</h3>
+                    <div class="summary-row">
+                        <span>Número de pedido:</span>
+                        <span id="order-number-summary">#123456</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Fecha:</span>
+                        <span id="order-date">10/05/2023</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Método de pago:</span>
+                        <span>Tarjeta de crédito</span>
+                    </div>
+                </div>
+                
+                <div class="summary-section">
+                    <h3 class="summary-title">Total del pedido</h3>
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span id="subtotal">S/. 0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Envío:</span>
+                        <span id="shipping">S/. 0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total:</span>
+                        <span id="total">S/. 0.00</span>
+                    </div>
+                </div>
+                
+                <div class="summary-actions">
+                    <button class="btn-primary btn-continue-shopping">
+                        <i class="fas fa-arrow-left"></i> Seguir comprando
+                    </button>
+                    <button class="btn-secondary btn-view-order">
+                        Ver mis pedidos
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="shipping-address">
+            <h3 class="summary-title">Dirección de envío</h3>
+            <div class="address-details">
+                <p id="shipping-address">Cargando dirección...</p>
+                <p id="shipping-phone"></p>
+                <p id="shipping-email"></p>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer se cargará aquí por load-components.js -->
+    
+    <!-- Scripts principales -->
+    <script src="../js/main.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Cargar datos del producto desde sessionStorage
+            const productData = JSON.parse(sessionStorage.getItem('currentProduct') || '{}');
+            const shippingData = JSON.parse(sessionStorage.getItem('shippingData') || '{}');
+            
+            // Si no hay datos del producto, redirigir a la tienda
+            if (!productData.id) {
+                window.location.href = 'tienda.html';
+                return;
+            }
+            
+            // Generar número de pedido aleatorio
+            const orderNumber = Math.floor(100000 + Math.random() * 900000);
+            document.getElementById('order-number').textContent = orderNumber;
+            document.getElementById('order-number-summary').textContent = `#${orderNumber}`;
+            
+            // Establecer fecha actual
+            const today = new Date();
+            document.getElementById('order-date').textContent = today.toLocaleDateString('es-PE');
+            
+            // Calcular totales
+            const subtotal = parseFloat(productData.price) || 0;
+            const shipping = 10.00; // Costo de envío fijo por ahora
+            const total = subtotal + shipping;
+            
+            // Actualizar resumen
+            document.getElementById('subtotal').textContent = `S/. ${subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `S/. ${shipping.toFixed(2)}`;
+            document.getElementById('total').textContent = `S/. ${total.toFixed(2)}`;
+            
+            // Agregar producto a la lista
+            const orderItemsList = document.getElementById('order-items-list');
+            orderItemsList.innerHTML = `
+                <div class="order-item">
+                    <img src="${productData.image}" alt="${productData.name}" class="order-item-image">
+                    <div class="order-item-details">
+                        <h3 class="order-item-title">${productData.name}</h3>
+                        <p class="order-item-price">S/. ${parseFloat(productData.price).toFixed(2)}</p>
+                        <p>Cantidad: 1</p>
+                    </div>
+                </div>
+            `;
+            
+            // Actualizar dirección de envío si existe
+            if (shippingData.address) {
+                const address = `${shippingData.firstName} ${shippingData.lastName}<br>
+                    ${shippingData.address}<br>
+                    ${shippingData.city}, ${shippingData.postalCode}<br>
+                    ${shippingData.country}`;
+                
+                document.getElementById('shipping-address').innerHTML = address;
+                document.getElementById('shipping-phone').textContent = `Teléfono: ${shippingData.phone || 'No especificado'}`;
+                document.getElementById('shipping-email').textContent = `Correo: ${shippingData.email || 'No especificado'}`;
+            } else {
+                document.getElementById('shipping-address').textContent = 'No se encontró información de envío';
+            }
+            
+            // Configurar botones
+            document.querySelector('.btn-continue-shopping').addEventListener('click', function() {
+                window.location.href = 'tienda.html';
+            });
+            
+            document.querySelector('.btn-view-order').addEventListener('click', function() {
+                // Aquí podrías redirigir a una página con el historial de pedidos
+                alert('Función de ver pedido en desarrollo');
+            });
+        });
+    </script>
+    
+    <!-- Scripts principales -->
+    <script src="../js/main.js"></script>
+    <script src="../js/load-components.js"></script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!-- nueva-promocion.html -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Nueva Promoción</h1>
+        <p class="mb-0">Agrega una nueva promoción</p>
+    </div>
+    <a href="#promociones" class="btn btn-outline-secondary" data-view="promociones">
+        <i class="fas fa-arrow-left"></i> Volver al listado
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form id="promoForm">
+                    <div class="mb-3">
+                        <label for="promoTitle" class="form-label">Título de la Promoción</label>
+                        <input type="text" class="form-control" id="promoTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promoDescription" class="form-label">Descripción</label>
+                        <textarea class="form-control" id="promoDescription" rows="3" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promoDiscount" class="form-label">Descuento (%)</label>
+                        <input type="number" class="form-control" id="promoDiscount" min="1" max="100" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promoStart" class="form-label">Fecha de Inicio</label>
+                        <input type="date" class="form-control" id="promoStart" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="promoEnd" class="form-label">Fecha de Fin</label>
+                        <input type="date" class="form-control" id="promoEnd" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Promoción</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

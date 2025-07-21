@@ -1,0 +1,151 @@
+<footer>
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3>Términos legales</h3>
+      <ul>
+        <li><a href="../pages/politicas-empresa.html">Políticas de la empresa</a></li>
+        <li><a href="../pages/terminos-condiciones.html">Términos y condiciones</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Te ayudamos</h3>
+      <ul>
+        <li><a href="#">Libro de reclamaciones</a></li>
+        <li><a href="https://wa.link/se0np8" target="_blank" rel="noopener noreferrer">Atención al Whatsapp o llama al +51914478753</a></li>
+        <li><a href="../pages/tienda.html">Tienda</a></li>
+      </ul>
+    </div>
+    <div class="footer-section">
+      <h3>Nuestra empresa</h3>
+      <ul>
+        <li><a href="contacto.html">Trabaja con nosotros</a></li>
+        <li><a href="nosotros.html">Nuestra empresa</a></li>
+      </ul>
+    </div>
+    <div class="footer-section payment-methods">
+      <h3>Medios de pago</h3>
+      <div class="payment-icons">
+        <label for="Visa">
+          <img src="https://cdn.visa.com/v2/assets/images/logos/visa/blue/logo.png" alt="Visa">
+          Visa
+        </label>
+        <label for="MasterCard">
+          <img src="https://mtf.mastercard.co.za/content/dam/public/mastercardcom/mea/za/logos/mc-logo-52.svg" alt="MasterCard">
+          MasterCard
+        </label>
+        <label for="PagoEfectivo">
+          <img src="../assets/payment/pagoefectivo.png" alt="PagoEfectivo">
+          PagoEfectivo
+        </label>
+        <label for="Yape">
+          <img src="https://www.yape.com.pe/images/logo-yape_positive.png" alt="Yape">
+          Yape
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <p>&copy; 2025 BYH. Todos los derechos reservados.</p>
+  </div>
+    <!-- Componente flotante de WhatsApp -->
+    <div class="whatsapp-float">
+        <a href="https://wa.link/se0np8" target="_blank" class="whatsapp-button" aria-label="Chatear por WhatsApp" style="background-image: url('../assets/social-media/whatsapp.png'); background-size: cover; background-position: center;">
+            <!-- Contenido vacío ya que usamos la imagen de fondo -->
+        </a>
+        <button class="whatsapp-button qr-button" id="showQrButton" aria-label="Mostrar código QR">
+            <i class="fas fa-qrcode"></i>
+        </button>
+    </div>
+    <style>
+        .whatsapp-float {
+            position: fixed;
+            bottom: 100px;
+            right: 2.5%;
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .whatsapp-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .whatsapp-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .qr-button {
+            background: #25D366;
+            color: white;
+            font-size: 24px;
+        }
+    </style>
+
+<!-- 
+    <div class="qr-overlay" id="qrOverlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); justify-content: center; align-items: center; z-index: 1000;">
+        <div class="qr-container" style="background: white; padding: 30px; border-radius: 10px; text-align: center; position: relative; max-width: 90%; max-height: 90%;">
+            <button class="close-qr" id="closeQr" style="position: absolute; top: 10px; right: 15px; background: none; border: none; font-size: 24px; cursor: pointer; color: #666;">&times;</button>
+            <img src="../assets/social-media/qr-whatsapp.png" alt="Código QR de WhatsApp">
+            <p>¡Escanea para chatear por WhatsApp!</p>
+        </div>
+    </div>
+
+    <script>
+        // Mostrar/ocultar el código QR
+        document.addEventListener('DOMContentLoaded', function() {
+            const showQrButton = document.getElementById('showQrButton');
+            const qrOverlay = document.getElementById('qrOverlay');
+            const closeQr = document.getElementById('closeQr');
+
+            // Función para mostrar el overlay
+            function showOverlay() {
+                qrOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden'; // Evitar scroll del body
+            }
+
+            // Función para ocultar el overlay
+            function hideOverlay() {
+                qrOverlay.style.display = 'none';
+                document.body.style.overflow = ''; // Restaurar scroll del body
+            }
+
+            if (showQrButton && qrOverlay && closeQr) {
+                // Mostrar al hacer clic en el botón de QR
+                showQrButton.addEventListener('click', showOverlay);
+
+                // Ocultar al hacer clic en la X
+                closeQr.addEventListener('click', hideOverlay);
+
+                // Ocultar al hacer clic fuera del contenedor
+                qrOverlay.addEventListener('click', function(e) {
+                    if (e.target === qrOverlay) {
+                        hideOverlay();
+                    }
+                });
+
+                // Ocultar al presionar la tecla Escape
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && qrOverlay.style.display === 'flex') {
+                        hideOverlay();
+                    }
+                });
+            }
+        });
+    </script>
+
+-->
+
+</footer>

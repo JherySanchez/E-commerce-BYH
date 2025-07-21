@@ -1,0 +1,508 @@
+/* Estilos generales */
+.login-container {
+    min-height: 100vh;
+    padding: 20px;
+    background-color: var(--primary-color);
+    position: relative;
+}
+
+/* Contenedor superior */
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0 0 0;
+    max-width: 1200px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* Botón de regreso */
+.back-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0px;
+    text-decoration: none;
+    color: white;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    padding: 0;
+}
+
+.back-button:hover {
+    color: var(--secondary-color);
+}
+
+/* Logo */
+.logo-inline {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    vertical-align: middle;
+    aspect-ratio: 1/1;
+    margin: 0 1em;
+}
+
+/* Navegación de autenticación */
+.auth-nav {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0;
+    padding: 10px 0;
+}
+
+.auth-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 30px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.auth-nav a {
+    text-decoration: none;
+    color: white;
+    padding: 10px 0;
+    display: block;
+    position: relative;
+    font-weight: 500;
+}
+
+.auth-nav a.active {
+    color: var(--secondary-color);
+}
+
+.auth-nav a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--secondary-color);
+}
+
+/* Contenedor principal */
+.main-content {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Sección del slider */
+.slider-section {
+    flex: 1;
+    background-color: var(--primary-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.slider {
+    height: 100%;
+    position: relative;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 1s ease;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slide-text {
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: white;
+    padding: 20px;
+    font-size: 1.5em;
+    font-weight: 300;
+    text-shadow: 0 2px 4px var(--primary-color);
+}
+
+/* Botones de navegación del slider */
+.slider-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(238, 173, 173, 0.048);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.slider-nav:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.slider-nav.prev {
+    left: 20px;
+}
+
+.slider-nav.next {
+    right: 20px;
+}
+
+/* Puntos indicadores */
+.slider-dots {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+    z-index: 10;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+.dot.active {
+    background: white;
+}
+
+/* Sección de formularios */
+.form-section {
+    flex: 1;
+    padding: 40px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+
+.auth-form {
+    display: none;
+    max-width: 400px;
+    margin: 0 auto;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease-out, transform 0.4s ease-out;
+}
+
+.auth-form.active {
+    opacity: 1;
+    transform: translateY(0);
+    display: block;
+    animation: slideUp 0.5s ease-out forwards;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* Grupos de formulario */
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.show-password {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+}
+
+.show-password input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  cursor: pointer;
+}
+
+.fa-eye,
+.fa-eye-slash {
+  font-size: 14px;
+  color: #666;
+}
+
+.fa-eye {
+  display: none;
+}
+
+.show-password input[type="checkbox"]:checked ~ .fa-eye {
+  display: block;
+}
+
+.show-password input[type="checkbox"]:checked ~ .fa-eye-slash {
+  display: none;
+}
+
+.show-password input[type="checkbox"]:checked + input[type="password"] {
+  -webkit-text-security: none;
+}
+
+
+.password-group {
+    margin-bottom: 10px;
+}
+
+.password-group .forgot-password {
+    display: block;
+    margin-top: 5px;
+    text-align: right;
+    font-size: 13px;
+    color: #999;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.password-group .forgot-password:hover {
+    color: var(--secondary-color);
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px 0;
+    border: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+    outline: none;
+    font-size: 16px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    background-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 1px 0 0 rgba(255, 255, 255, 0);
+}
+
+/* Password group specific styles */
+.password-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.password-group .forgot-password {
+    display: block;
+    text-align: right;
+    font-size: 0.85rem;
+    color: #666;
+    margin-top: 0.5rem;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.password-group .forgot-password:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+/* General form group styles */
+.form-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.6);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-origin: left center;
+    pointer-events: none;
+    will-change: transform, color, font-size;
+}
+
+.form-group input:focus,
+.form-group input:not(:placeholder-shown) {
+    border-color: var(--secondary-color);
+    box-shadow: 0 1px 0 0 var(--secondary-color);
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    top: -18px;
+    font-size: 12px;
+    color: var(--secondary-color);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    transform: scale(0.95) translateY(-2px);
+}
+
+.form-group input::placeholder {
+    color: transparent;
+}
+
+/* Opciones del formulario */
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 14px;
+}
+
+.forgot-password {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* Botón principal */
+.btn-primary {
+    width: 100%;
+    padding: 12px;
+    background-color: white;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Separador */
+.separator {
+    text-align: center;
+    margin: 20px 0;
+    position: relative;
+}
+
+.separator::before,
+.separator::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 45%;
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.separator::before {
+    left: 0;
+}
+
+.separator::after {
+    right: 0;
+}
+
+.separator span {
+    background-color: #111111;
+    padding: 0 10px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 14px;
+}
+
+/* Botones sociales */
+.social-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-btn {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #ffffff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.social-btn i {
+    font-size: 16px;
+}
+
+.social-btn.google:hover {
+    background-color: #DB4437;
+    color: white;
+    border-color: #DB4437;
+}
+
+.social-btn.facebook:hover {
+    background-color: #4267B2;
+    color: white;
+    border-color: #4267B2;
+}
+
+.social-btn.microsoft:hover {
+    background-color: #00A4EF;
+    color: white;
+    border-color: #00A4EF;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .slider-section {
+        display: none;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .social-buttons {
+        grid-template-columns: 1fr;
+    }
+}

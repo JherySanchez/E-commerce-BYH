@@ -1,0 +1,92 @@
+<!-- dashboard.html -->
+<div class="container-fluid px-0">
+    <div class="dashboard-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-4">
+        <h1 class="mb-3 mb-md-0"><i class="fas fa-tachometer-alt"></i> Panel de Control</h1>
+        <div class="dashboard-actions d-flex gap-2">
+            <button class="btn btn-primary" id="newOrderBtn">
+                <i class="fas fa-plus"></i> Nuevo Pedido
+            </button>
+            <button class="btn btn-secondary" id="exportBtn">
+                <i class="fas fa-download"></i> Exportar
+            </button>
+        </div>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="row g-3 mb-4" id="statsContainer">
+        <!-- Tarjetas de estadísticas dinámicas: usar col-12 col-sm-6 col-lg-3 para responsividad -->
+    </div>
+
+    <!-- Gráfico y Sidebar -->
+    <div class="row g-4 dashboard-content">
+        <!-- Gráfico principal -->
+        <div class="col-12 col-lg-8">
+            <div class="card h-100">
+                <div class="card-header d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
+                    <h3 class="mb-2 mb-md-0">Ventas Mensuales</h3>
+                    <div class="card-actions">
+                        <select class="form-control form-control-sm" id="salesPeriod">
+                            <option>Últimos 6 meses</option>
+                            <option>Este año</option>
+                            <option>Año pasado</option>
+                            <option>Personalizado</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="salesChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Sidebar: tablas -->
+        <div class="col-12 col-lg-4">
+            <div class="card mb-4 mb-lg-0">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">Ventas Recientes</h3>
+                    <a href="#pedidos" class="btn btn-sm btn-link">Ver todo</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table table-hover mb-0">
+                            <thead>
+                                <tr>
+                                    <th># Pedido</th>
+                                    <th>Cliente</th>
+                                    <th>Fecha</th>
+                                    <th>Total</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentSalesTable">
+                                <!-- Las ventas recientes se cargarán aquí -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h3 class="mb-0">Productos Más Vendidos</h3>
+                    <a href="#productos" class="btn btn-sm btn-link">Ver todos</a>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive">
+                        <table class="table mb-0">
+                            <thead>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th>Ventas</th>
+                                    <th>Ingresos</th>
+                                </tr>
+                            </thead>
+                        <tbody id="topProductsTable">
+                            <!-- Los productos más vendidos se cargarán aquí -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

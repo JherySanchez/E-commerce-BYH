@@ -1,0 +1,108 @@
+/* Estilos específicos para la página de Nosotros */
+#nosotros-container {
+  padding: 20px;
+  max-width: 1200px;
+}
+
+.nosotros-header {
+  background-color: rgba(223, 223, 223, 0.9);
+  position: sticky;
+  top: 75px;
+  padding: 0 0;
+  margin-bottom: 0;
+  z-index: 100;
+  border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.nosotros-nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  padding: 0;
+  margin: 1rem 0;
+}
+
+.nosotros-nav .nav-link {
+  text-decoration: none;
+  color: var(--text-color);
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nosotros-nav .nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary-color);
+  transition: width 0.3s ease;
+}
+
+.nosotros-nav .nav-link:hover::after,
+.nosotros-nav .nav-link.active::after {
+  width: 100%;
+}
+
+.nosotros-nav .nav-link:hover,
+.nosotros-nav .nav-link.active {
+  color: var(--secondary-color);
+}
+
+.nosotros-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.content-section {
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: var(--background-color);
+  padding: 2rem;
+  border-radius: 8px;
+  transform: translateY(20);
+}
+
+.content-section.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.content-section h3 {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.content-section ul {
+  list-style-position: inside;
+  margin-left: 1rem;
+}
+
+/* Estilos responsivos para la sección Nosotros */
+@media (max-width: 768px) {
+  .nosotros-nav ul {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+
+  .nosotros-nav ul::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+  }
+
+  .nosotros-nav .nav-link {
+    white-space: nowrap;
+  }
+
+  .content-section {
+    padding: 1.5rem;
+  }
+}

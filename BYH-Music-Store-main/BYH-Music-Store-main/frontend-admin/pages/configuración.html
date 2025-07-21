@@ -1,0 +1,75 @@
+<!-- configuración.html -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1><i class="fas fa-cogs"></i> Configuración</h1>
+        <p class="mb-0">Administra la configuración general de la tienda</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Datos de la Tienda</h5>
+            </div>
+            <div class="card-body">
+                <form id="formTienda">
+                    <div class="mb-3">
+                        <label for="nombreTienda" class="form-label">Nombre de la tienda</label>
+                        <input type="text" class="form-control" id="nombreTienda" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailTienda" class="form-label">Email de contacto</label>
+                        <input type="email" class="form-control" id="emailTienda" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="telefonoTienda" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="telefonoTienda">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Métodos de Pago</h5>
+            </div>
+            <div class="card-body">
+                <form id="formPagos">
+                    <div class="mb-3">
+                        <label for="metodoPago" class="form-label">Método de pago principal</label>
+                        <select class="form-select" id="metodoPago">
+                            <option value="">Seleccionar</option>
+                            <option value="tarjeta">Tarjeta de crédito/débito</option>
+                            <option value="transferencia">Transferencia bancaria</option>
+                            <option value="paypal">PayPal</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 mb-4">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">Notificaciones</h5>
+            </div>
+            <div class="card-body">
+                <form id="formNotificaciones">
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="notiPedidos" checked>
+                        <label class="form-check-label" for="notiPedidos">Recibir notificación por nuevos pedidos</label>
+                    </div>
+                    <div class="form-check form-switch mb-3">
+                        <input class="form-check-input" type="checkbox" id="notiClientes">
+                        <label class="form-check-label" for="notiClientes">Notificar nuevos clientes registrados</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

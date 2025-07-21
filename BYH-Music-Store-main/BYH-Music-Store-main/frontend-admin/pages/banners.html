@@ -1,0 +1,94 @@
+<!-- Banner List View -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Banners</h1>
+        <p class="mb-0">Administra los banners de la tienda</p>
+    </div>
+    <a href="#nuevo-banner" class="btn btn-primary" id="nuevoBannerBtn">
+        <i class="fas fa-plus"></i> Nuevo Banner
+    </a>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row" id="bannersContainer">
+            <div class="col-12 text-center my-5">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Cargando...</span>
+                </div>
+                <p class="mt-2">Cargando banners...</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Paginación -->
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Anterior</a>
+            </li>
+            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#">Siguiente</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<!-- Banner Form Template (Hidden by default) -->
+<template id="bannerFormTemplate">
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 class="mb-0">Nuevo Banner</h5>
+        </div>
+        <div class="card-body">
+            <form id="bannerForm">
+                <input type="hidden" id="bannerId">
+                
+                <div class="mb-3">
+                    <label for="bannerTitle" class="form-label">Título</label>
+                    <input type="text" class="form-control" id="bannerTitle" required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bannerPosition" class="form-label">Posición</label>
+                    <select class="form-select" id="bannerPosition" required>
+                        <option value="">Seleccionar posición</option>
+                        <option value="main">Principal - Desktop</option>
+                        <option value="secondary">Secundario - Desktop</option>
+                        <option value="mobile">Principal - Móvil</option>
+                    </select>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bannerUrl" class="form-label">URL de destino</label>
+                    <input type="url" class="form-control" id="bannerUrl" placeholder="https://ejemplo.com/oferta">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bannerImage" class="form-label">Imagen del banner</label>
+                    <input class="form-control" type="file" id="bannerImage" accept="image/*">
+                    <div class="form-text">Tamaño recomendado: 1200x400px para banners principales, 600x300px para secundarios.</div>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="bannerStatus" class="form-label">Estado</label>
+                    <select class="form-select" id="bannerStatus" required>
+                        <option value="active">Activo</option>
+                        <option value="inactive">Inactivo</option>
+                    </select>
+                </div>
+                
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" id="cancelBannerBtn">
+                        <i class="fas fa-times me-1"></i> Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save me-1"></i> Guardar Banner
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</template>

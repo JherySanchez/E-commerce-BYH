@@ -1,0 +1,45 @@
+<!-- nuevo-cliente.html -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Nuevo Cliente</h1>
+        <p class="mb-0">Agrega un nuevo cliente al sistema</p>
+    </div>
+    <a href="#clientes" class="btn btn-outline-secondary" data-view="clientes">
+        <i class="fas fa-arrow-left"></i> Volver al listado
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form id="clientForm">
+                    <div class="mb-3">
+                        <label for="clientName" class="form-label">Nombre Completo</label>
+                        <input type="text" class="form-control" id="clientName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="clientEmail" class="form-label">Correo Electrónico</label>
+                        <input type="email" class="form-control" id="clientEmail" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="clientPhone" class="form-label">Teléfono</label>
+                        <input type="tel" class="form-control" id="clientPhone" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="clientAddress" class="form-label">Dirección</label>
+                        <input type="text" class="form-control" id="clientAddress">
+                    </div>
+                    <div class="mb-3">
+                        <label for="clientActive" class="form-label">¿Activo?</label>
+                        <select class="form-select" id="clientActive" required>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Cliente</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+<!-- nuevo-banner.html -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1>Nuevo Banner</h1>
+        <p class="mb-0">Agrega un nuevo banner para la tienda</p>
+    </div>
+    <a href="#banners" class="btn btn-outline-secondary" data-view="banners">
+        <i class="fas fa-arrow-left"></i> Volver al listado
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body">
+                <form id="bannerForm">
+                    <div class="mb-3">
+                        <label for="bannerTitle" class="form-label">Título del Banner</label>
+                        <input type="text" class="form-control" id="bannerTitle" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bannerImage" class="form-label">Imagen</label>
+                        <input type="file" class="form-control" id="bannerImage" accept="image/*" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="bannerLink" class="form-label">Enlace (opcional)</label>
+                        <input type="url" class="form-control" id="bannerLink">
+                    </div>
+                    <div class="mb-3">
+                        <label for="bannerActive" class="form-label">¿Activo?</label>
+                        <select class="form-select" id="bannerActive" required>
+                            <option value="1">Sí</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Guardar Banner</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

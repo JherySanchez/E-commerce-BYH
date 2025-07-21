@@ -1,0 +1,19 @@
+<!-- promociones.html -->
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1><i class="fas fa-bullhorn"></i> Promociones</h1>
+        <p class="mb-0">Administra las promociones activas y pasadas</p>
+    </div>
+    <a href="#nueva-promocion" class="btn btn-primary" id="nuevaPromocionBtn" onclick="app.loadView('nueva-promocion'); return false;">
+        <i class="fas fa-plus"></i> Nueva Promoción
+    </a>
+</div>
+
+<div class="row" id="promocionesContainer">
+    <!-- Las cards de promociones se cargarán dinámicamente aquí -->
+    <div class="col-12 text-center my-5">
+        <i class="fas fa-bullhorn fa-3x text-muted mb-3"></i>
+        <h5>No hay promociones registradas</h5>
+        <p class="text-muted">Comienza creando tu primera promoción</p>
+    </div>
+</div>

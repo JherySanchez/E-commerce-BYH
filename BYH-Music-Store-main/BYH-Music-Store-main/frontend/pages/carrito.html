@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras - BYH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-tienda.css">
+    <link rel="stylesheet" href="../css/style-carrito.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header se cargará aquí por load-components.js -->
+    
+    <main class="cart-container">
+        <div class="cart-header">
+            <h1>Tu Carrito de Compras</h1>
+            <p>Revisa tus productos antes de proceder al pago</p>
+        </div>
+        
+        <div class="cart-content">
+            <div class="cart-items">
+                <!-- Los items del carrito se cargarán aquí dinámicamente -->
+            </div>
+            
+            <div class="cart-summary">
+                <h3>Resumen de la compra</h3>
+                <div class="summary-row subtotal">
+                    <span>Subtotal</span>
+                    <span>S/. 0.00</span>
+                </div>
+                <div class="summary-row shipping">
+                    <span>Envío</span>
+                    <span>S/. 0.00</span>
+                </div>
+                <div class="summary-row summary-total">
+                    <span>Total</span>
+                    <span>S/. 0.00</span>
+                </div>
+                <button class="checkout-btn">Proceder al pago</button>
+                <a href="tienda.html" class="continue-shopping">
+                    <i class="fas fa-arrow-left"></i> Seguir comprando
+                </a>
+            </div>
+        </div>
+    </main>
+    
+    <!-- Footer se cargará aquí por load-components.js -->
+    
+    <!-- Scripts principales -->
+    <script src="../js/load-components.js"></script>
+    <script type="module" src="../js/carrito.js" defer></script>
+    
+</body>
+</html>

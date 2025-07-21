@@ -1,0 +1,69 @@
+/* frontend/css/style-marquee.css */
+
+/* Contenedor principal del marquee */
+.marquee-container {
+    width: 100%;
+    overflow: hidden; /* Oculta el contenido que se desborda */
+    padding: 1rem 0;
+    background-color: #1a1a1a; /* Un fondo oscuro para que resalte */
+    border-top: 1px solid #333;
+    border-bottom: 1px solid #333;
+    box-sizing: border-box;
+}
+
+/* Pista que se desplaza */
+.marquee-track {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    /* La animación se define aquí. Puedes ajustar la duración (60s) para cambiar la velocidad. */
+    animation: marquee-scroll 60s linear infinite;
+    width: fit-content; /* Se ajusta al ancho de sus hijos */
+}
+
+/* Pausar la animación al pasar el ratón por encima */
+.marquee-container:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+/* Cada elemento del marquee */
+.marquee-item {
+    flex-shrink: 0; /* Evita que los elementos se encojan */
+    margin: 0 1.5rem; /* Espacio entre los banners */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.marquee-item a {
+    display: block;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 8px;
+    overflow: hidden; /* Asegura que la imagen no se salga del borde redondeado */
+}
+
+.marquee-item a:hover {
+    transform: scale(1.05); /* Un ligero zoom al pasar el ratón */
+    box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15); /* Un brillo sutil */
+}
+
+.marquee-item img {
+    height: 100px; /* Altura fija para todos los banners */
+    width: auto; /* El ancho se ajusta para mantener la proporción */
+    max-width: none; /* Anula cualquier max-width que pueda limitarlo */
+    border-radius: 8px;
+    object-fit: cover; /* Asegura que la imagen cubra el área sin distorsionarse */
+}
+
+/* Definición de la animación de desplazamiento */
+@keyframes marquee-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        /* Mueve la pista hacia la izquierda por la mitad de su ancho total.
+           Como duplicamos el contenido, esto crea un bucle perfecto. */
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,465 @@
+/* Reset y variables globales */
+:root {
+  /*Colores*/
+  --primary-color: #12161d;
+  --secondary-color: #f00000;
+  --background-color: #E8E8E8;
+  --background-color-translucent: rgba(255, 255, 255, 0.9);
+  --text-color: black;
+  --light-bg: #E8E8E8;
+  
+  /*Fuentes*/
+  --font-family: Arial, sans-serif;
+  --font-size: 16px;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+
+  /*Tamaños*/
+  --small: 12px;
+  --medium: 16px;
+  --large: 20px;
+
+  /*Espaciados*/
+  --small-spacing: 8px;
+  --medium-spacing: 16px;
+  --large-spacing: 24px;
+
+  /*Medidas*/
+  --max-width: 1200px;
+}
+
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+}
+
+/* Header y Navegación */
+header {
+  background-color: var(--primary-color);
+  padding: 0;
+  position: fixed;
+  width: 100%;
+  height: 75px;
+  top: 0;
+  z-index: 1000;
+}
+
+
+.nav-container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 0 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin: 0 1em;
+}
+
+.logo a {
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  width: 50px;
+  margin-right: 0;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-menu li a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-menu li a:hover {
+  color: var(--secondary-color);
+}
+
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  cursor: pointer;
+}
+
+.menu-icon span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.login-icon {
+  display: flex;
+  align-items: center;
+}
+
+.login-icon a {
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0.5rem;
+}
+
+.login-icon svg {
+  fill: currentColor;
+}
+
+.login-icon a:hover {
+  color: var(--secondary-color);
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-right: 1rem;
+}
+
+.header-actions a {
+  color: white;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.header-actions a:hover {
+  color: var(--secondary-color);
+}
+
+.header-actions i {
+  font-size: 1.25rem;
+}
+
+.action-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.7rem;
+  font-weight: bold;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .header-actions span:not(.action-count) {
+    display: none;
+  }
+  
+  .header-actions {
+    gap: 0.5rem;
+  }
+  
+  .header-actions a {
+    padding: 0.5rem 0.3rem;
+  }
+}
+
+/* Main Content */
+main {
+  min-height: calc(100vh - 75px - 200px); /* Viewport height - header height - footer height */
+  background-image: url('../assets/background.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  padding: 2rem 0;
+  margin-top: 75px; /* Same as header height */
+  margin-bottom: -200px; /* Negative margin to compensate for footer */
+  box-sizing: border-box;
+}
+
+/* Contenedores principales */
+main > .container, .producto-container,
+.contacto-container,
+.nosotros-container {
+  max-width: 1200px;
+  margin: 0 5% 2.5%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Push footer down */
+main::after {
+  content: "";
+  display: block;
+  height: 200px; /* Same as footer height */
+}
+
+section {
+  padding: 2rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2, h3 {
+  margin-bottom: 1rem;
+}
+
+/* Estilos compartidos entre páginas */
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 2rem 0;
+  margin-top: auto;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.footer-section h3 {
+  color: white;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+  color: var(--secondary-color);
+}
+
+.payment-methods .payment-icons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  align-items: center;
+}
+
+.payment-icons img {
+  max-width: 30px;
+  height: auto;
+}
+
+.copyright {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 768px) {
+  .footer-content {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-content {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-icon {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-info, .social-media {
+    margin-bottom: 1.5rem;
+  }
+
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .nav-menu {
+    display: none;
+    position: absolute;
+    top: 80px;
+    left: 0;
+    width: 100%;
+    background-color: var(--primary-color);
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1rem;
+  }
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .contact-info, .social-media {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/*________________________________________________________*/
+/* Componente flotante de WhatsApp */
+.whatsapp-float {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.whatsapp-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.whatsapp-button i {
+    font-size: 30px;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.qr-button {
+    background-color: #075E54;
+}
+
+/* Estilos simplificados para el modal del QR */
+.modal-qr {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
+    text-align: center;
+}
+
+.modal-content {
+    background: white;
+    margin: 15% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 300px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #333;
+}
+
+.modal-content img {
+    max-width: 100%;
+    height: auto;
+    margin: 10px 0;
+}
+
+.modal-content p {
+    margin: 10px 0;
+    color: #333;
+}

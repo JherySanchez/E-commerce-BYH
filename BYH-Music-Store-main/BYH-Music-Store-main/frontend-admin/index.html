@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administración - BYH Music Store</title>
+    
+    <!-- Estilos -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/productos.css">
+    
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Chart.js para los gráficos del Dashboard -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Script de bloqueo para verificar autenticación. Se ejecuta ANTES de renderizar nada. -->
+    <script>
+        const authToken = localStorage.getItem('authToken');
+        const userRole = localStorage.getItem('userRole');
+        if (!authToken || userRole !== 'admin') {
+            window.location.replace('login.html'); // Usamos replace para no guardar la página actual en el historial
+        }
+    </script>
+
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>BYH Music</h2>
+                <p>Panel de Administración</p>
+            </div>
+            <nav class="nav-menu">
+                <ul>
+                    <li data-view="dashboard">
+                        <a href="#dashboard" data-view="dashboard">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                    </li>
+                    <li data-view="productos">
+                        <a href="#productos" data-view="productos">
+                            <i class="fas fa-guitar"></i> Productos
+                        </a>
+                        <ul class="submenu">
+                            <li data-view="nuevo-producto">
+                                <a href="#nuevo-producto" data-view="nuevo-producto">Nuevo Producto</a>
+                            </li>
+                            <li data-view="listar-productos">
+                                <a href="#listar-productos" data-view="listar-productos">Listar Productos</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-view="promociones">
+                        <a href="#promociones" data-view="promociones">
+                            <i class="fas fa-tags"></i> Promociones
+                        </a>
+                        <ul class="submenu">
+                            <li data-view="nueva-promocion">
+                                <a href="#nueva-promocion" data-view="nueva-promocion">Nueva Promoción</a>
+                            </li>
+                            <li data-view="listar-promociones">
+                                <a href="#listar-promociones" data-view="listar-promociones">Listar Promociones</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-view="banners">
+                        <a href="#banners" data-view="banners">
+                            <i class="fas fa-image"></i> Banners
+                        </a>
+                        <ul class="submenu">
+                            <li data-view="nuevo-banner">
+                                <a href="#nuevo-banner" data-view="nuevo-banner">Nuevo Banner</a>
+                            </li>
+                            <li data-view="listar-banners">
+                                <a href="#listar-banners" data-view="listar-banners">Listar Banners</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-view="pedidos">
+                        <a href="#pedidos" data-view="pedidos">
+                            <i class="fas fa-shopping-cart"></i> Pedidos
+                        </a>
+                    </li>
+                    <li data-view="clientes">
+                        <a href="#clientes" data-view="clientes">
+                            <i class="fas fa-users"></i> Clientes
+                        </a>
+                        <ul class="submenu">
+                            <li data-view="nuevo-cliente">
+                                <a href="#nuevo-cliente" data-view="nuevo-cliente">Nuevo Cliente</a>
+                            </li>
+                            <li data-view="listar-clientes">
+                                <a href="#listar-clientes" data-view="listar-clientes">Listar Clientes</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li data-view="configuracion">
+                        <a href="#configuracion" data-view="configuracion">
+                            <i class="fas fa-cog"></i> Configuración
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="user-panel">
+                <div class="user-info">
+                    <img src="./img/default-avatar.svg" alt="Admin" class="user-avatar">
+                    <div class="user-details">
+                        <span class="user-name" id="userNameSpan">Admin</span>
+                        <span class="user-role">Administrador</span>
+                    </div>
+                </div>
+                <a href="#" class="logout-btn" id="logoutBtn">
+                    <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+    <header class="top-bar">
+        <div class="toggle-sidebar" id="toggleSidebar">
+            <i class="fas fa-bars"></i>
+        </div>
+        <form class="search-bar" id="searchForm">
+            <input type="text" placeholder="Buscar..." id="searchInput">
+            <button type="submit"><i class="fas fa-search"></i></button>
+        </form>
+        <div class="notifications">
+            <i class="fas fa-bell"></i>
+            <span class="badge">3</span>
+        </div>
+    </header>
+    <div id="content-area" class="content-area"></div>
+    </div>
+
+    <!-- El script principal de tu app. Se carga al final para asegurar que todo el HTML exista. -->
+    <script type="module" src="js/App.js"></script>
+</body>
+</html>

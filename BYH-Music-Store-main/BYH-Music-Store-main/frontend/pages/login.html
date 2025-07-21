@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redireccionando al Panel de Administración...</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <script>
+    // Redirige inmediatamente al login del panel de administración.
+    // La ruta sube dos niveles (de /pages a /frontend y luego a la raíz)
+    // y luego entra a /frontend-admin.
+    window.location.href = '../../frontend-admin/login.html';
+  </script>
+</head>
+<body>
+  <p>Redireccionando al panel de administración...</p>
+  <p>Si no eres redirigido, <a href="../../frontend-admin/login.html">haz clic aquí</a>.</p>
+</body>
+</html>

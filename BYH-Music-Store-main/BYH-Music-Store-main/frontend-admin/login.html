@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BYH Music - Panel de Administración</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="css/style-login.css">
+</head>
+<body>
+  <div class="login-container">
+        <div class="header-container">
+      <a href="dashboard.html" class="back-button">
+        <i class="fas fa-arrow-left"></i>
+        <span>Volver al Panel <img class="logo-inline" src="img/logo.png" alt="BYH - Admin"></span>
+      </a>
+      <nav class="auth-nav">
+        <ul>
+          <li><a href="#" class="active" data-form="login-form">Iniciar Sesión</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="main-content">
+      <div class="slider-section">
+        <div class="slider">
+          <div class="slide">
+            <img src="img/login-slider1.jpg" alt="Imagen 1">
+            <p class="slide-text">"Accede a la administración de la tienda"</p>
+          </div>
+          <div class="slide">
+            <img src="img/login-slider2.jpg" alt="Imagen 2">
+            <p class="slide-text">"Gestiona productos, banners y usuarios"</p>
+          </div>
+          <div class="slide">
+            <img src="img/login-slider3.jpg" alt="Imagen 3">
+            <p class="slide-text">"Disfruta de un panel moderno y seguro"</p>
+          </div>
+          <button class="slider-nav prev" aria-label="Anterior">
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button class="slider-nav next" aria-label="Siguiente">
+            <i class="fas fa-chevron-right"></i>
+          </button>
+          <div class="slider-dots">
+            <button class="dot active" data-slide="0" aria-label="Ir a slide 1"></button>
+            <button class="dot" data-slide="1" aria-label="Ir a slide 2"></button>
+            <button class="dot" data-slide="2" aria-label="Ir a slide 3"></button>
+          </div>
+        </div>
+      </div>
+      <div class="form-section">
+        <form id="loginForm" class="auth-form active">
+          <h2>Bienvenido Administrador</h2>
+          <span id="login-error" class="error-message"></span>
+          <div class="form-group">
+                        <input type="text" id="email" placeholder=" " required autocomplete="username">
+            <label for="email">Usuario o Correo</label>
+          </div>
+          <div class="form-group password-group">
+            <input type="password" id="password" name="password" placeholder=" " required autocomplete="current-password">
+            <label for="password">Contraseña</label>
+            <div class="show-password" for="show-password">
+              <input type="checkbox" id="show-password" onclick="password.type = this.checked ? 'text' : 'password'">
+              <i class="fa fa-eye"></i>
+              <i class="fa fa-eye-slash"></i>
+            </div>
+          </div>
+          <button type="submit" class="btn-login">
+            <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+    let currentSlide = 0;
+    let slideInterval;
+
+    function showSlide(index) {
+      slides.forEach((slide, i) => {
+        slide.style.opacity = i === index ? '1' : '0';
+        dots[i].classList.toggle('active', i === index);
+      });
+      currentSlide = index;
+    }
+    function nextSlide() {
+      let next = (currentSlide + 1) % slides.length;
+      showSlide(next);
+      resetInterval();
+    }
+    function prevSlide() {
+      let prev = (currentSlide - 1 + slides.length) % slides.length;
+      showSlide(prev);
+      resetInterval();
+    }
+    function resetInterval() {
+      clearInterval(slideInterval);
+      slideInterval = setInterval(nextSlide, 5000);
+    }
+    document.querySelector('.next').onclick = nextSlide;
+    document.querySelector('.prev').onclick = prevSlide;
+    dots.forEach((dot, i) => {
+      dot.onclick = () => {
+        showSlide(i);
+        resetInterval();
+      };
+    });
+    showSlide(0);
+    slideInterval = setInterval(nextSlide, 5000);
+    document.querySelector('.slider').onmouseenter = () => clearInterval(slideInterval);
+    document.querySelector('.slider').onmouseleave = resetInterval;
+
+    // Mostrar/ocultar contraseña
+    const showPassword = document.getElementById('show-password');
+    const password = document.getElementById('password');
+    showPassword.addEventListener('change', function () {
+      password.type = this.checked ? 'text' : 'password';
+    });
+
+    // Autenticación contra el backend
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const pass = document.getElementById('password').value.trim();
+      const errorLabel = document.getElementById('login-error');
+      const submitButton = this.querySelector('button[type="submit"]');
+
+      if (!email || !pass) {
+        errorLabel.textContent = 'Por favor, completa ambos campos.';
+        return;
+      }
+
+      // Deshabilitar botón y mostrar spinner
+      submitButton.disabled = true;
+      submitButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Verificando...`;
+      errorLabel.textContent = '';
+
+      try {
+        const response = await fetch('http://localhost:3000/api/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email: email, password: pass }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Error en el servidor.');
+        }
+
+        // Guardar datos de sesión del usuario real
+        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('userRole', data.user.role);
+        localStorage.setItem('userName', data.user.name);
+
+        // Redirigir al panel de administración
+        window.location.href = 'index.html';
+      } catch (error) {
+        errorLabel.textContent = error.message || 'No se pudo conectar con el servidor.';
+        submitButton.disabled = false;
+        submitButton.innerHTML = `<i class="fas fa-sign-in-alt"></i> Iniciar Sesión`;
+      }
+    });
+  </script>
+</body>
+</html>

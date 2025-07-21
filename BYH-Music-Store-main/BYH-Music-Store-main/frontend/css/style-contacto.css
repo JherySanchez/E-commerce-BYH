@@ -1,0 +1,224 @@
+body {
+  background-color: var(--background-color);
+}
+
+/* Estilos para la página de contacto */
+.contacto-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 20px;
+}
+
+.contacto-container h1 {
+  margin: 20px;
+  grid-column: 1 / -1;
+  color: var(--primary-color);
+  margin-bottom: auto;
+}
+
+.contacto-descripcion {
+    grid-column: 1 / -1;
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+}
+
+/* Estilos del formulario */
+.formulario-contacto {
+    background: var(--background-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Campos de empresa (inicialmente ocultos) */
+.empresa-fields {
+    display: none;
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    border: 1px solid #eee;
+}
+
+/* Mostrar campos de empresa cuando sean necesarios */
+.empresa-fields.visible {
+    display: block;
+}
+
+/* Asegurar que los campos de empresa tengan el mismo estilo que otros campos */
+.empresa-fields .form-group {
+    margin-bottom: 15px;
+}
+
+.empresa-fields .form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 2px rgba(240, 0, 0, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.checkbox-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+    margin-top: 4px;
+}
+
+.checkbox-group label {
+    font-weight: normal;
+    line-height: 1.5;
+}
+
+.link {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+.btn-enviar {
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.btn-enviar:hover {
+    background-color: #d40000;
+}
+
+/* Sección de información de contacto */
+.informacion-contacto {
+    background-color: var(--background-color);
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    align-self: start;
+}
+
+.informacion-contacto h2 {
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+.contacto-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.contacto-item i {
+    color: var(--secondary-color);
+    font-size: 20px;
+    margin-top: 4px;
+}
+
+.contacto-item h3 {
+    margin: 0 0 5px;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.contacto-item p {
+    margin: 0;
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .contacto-container {
+        grid-template-columns: 1fr;
+        margin-top: 80px;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+}
+
+/* Validación de formulario */
+input:invalid,
+textarea:invalid,
+select:invalid {
+    border-color: #ff6b6b;
+}
+
+input:focus:invalid,
+textarea:focus:invalid,
+select:focus:invalid {
+    box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.4);
+}
+
+.error-message {
+    color: #ff6b6b;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+input:invalid + .error-message,
+textarea:invalid + .error-message,
+select:invalid + .error-message {
+    display: block;
+}

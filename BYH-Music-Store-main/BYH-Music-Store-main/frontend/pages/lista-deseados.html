@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Deseados - BYH</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-tienda.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .wishlist-container {
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+        
+        .wishlist-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .wishlist-item {
+            border: 1px solid #eee;
+            border-radius: 8px;
+            overflow: hidden;
+            background: white;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .wishlist-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .wishlist-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .wishlist-details {
+            padding: 1.2rem;
+        }
+        
+        .wishlist-title {
+            font-size: 1.1rem;
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .wishlist-price {
+            font-weight: bold;
+            color: #333;
+            margin: 0.5rem 0;
+        }
+        
+        .wishlist-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            gap: 0.5rem;
+        }
+        
+        .btn-add-cart {
+            flex: 1;
+            background: #25D366;
+            color: white;
+            border: none;
+            padding: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-remove {
+            background: #ff4444;
+            color: white;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 4px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .empty-wishlist {
+            text-align: center;
+            padding: 3rem 0;
+            grid-column: 1 / -1;
+        }
+        
+        .continue-shopping {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #25D366;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header se cargará aquí por load-components.js -->
+    
+    <main>
+      <div class="container">
+        <div class="wishlist-container">
+        <div class="wishlist-header">
+            <h1>Tu Lista de Deseados</h1>
+            <p>Guarda tus productos favoritos para más tarde</p>
+        </div>
+        
+        <div class="wishlist-content">
+            <div class="wishlist-grid">
+                <!-- Ejemplo de ítem en la lista de deseados -->
+                <div class="wishlist-item">
+                    <img src="../assets/product1.jpg" alt="Producto" class="wishlist-image">
+                    <div class="wishlist-details">
+                        <h3 class="wishlist-title">Parche - Metallica Master of Puppets</h3>
+                        <p class="wishlist-price">S/. 25.00</p>
+                        <div class="wishlist-actions">
+                            <button class="btn-add-cart">
+                                <i class="fas fa-shopping-cart"></i>
+                                Añadir
+                            </button>
+                            <button class="btn-remove" title="Eliminar">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Puedes agregar más ítems aquí -->
+                
+                <!-- Mensaje cuando la lista está vacía -->
+                <!--
+                <div class="empty-wishlist">
+                    <i class="far fa-heart" style="font-size: 3rem; color: #ddd; margin-bottom: 1rem;"></i>
+                    <h3>Tu lista de deseados está vacía</h3>
+                    <p>¿No sabes qué añadir? ¡Echa un vistazo a nuestros <a href="tienda.html" class="continue-shopping">productos destacados</a>!</p>
+                </div>
+                -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    
+    <!-- Footer se cargará aquí por load-components.js -->
+    
+    <!-- Scripts principales -->
+    <script src="../js/main.js"></script>
+    <script src="../js/load-components.js"></script>
+    
+    <script>
+        // Función para eliminar un ítem de la lista de deseados
+        document.querySelectorAll('.btn-remove').forEach(button => {
+            button.addEventListener('click', function() {
+                if (confirm('¿Estás seguro de que quieres eliminar este producto de tu lista de deseados?')) {
+                    this.closest('.wishlist-item').remove();
+                    checkEmptyWishlist();
+                }
+            });
+        });
+        
+        // Función para verificar si la lista está vacía
+        function checkEmptyWishlist() {
+            const wishlistGrid = document.querySelector('.wishlist-grid');
+            const items = wishlistGrid.querySelectorAll('.wishlist-item');
+            
+            if (items.length === 0) {
+                // Mostrar mensaje de lista vacía
+                const emptyMessage = `
+                    <div class="empty-wishlist">
+                        <i class="far fa-heart" style="font-size: 3rem; color: #ddd; margin-bottom: 1rem;"></i>
+                        <h3>Tu lista de deseados está vacía</h3>
+                        <p>¿No sabes qué añadir? ¡Echa un vistazo a nuestros <a href="tienda.html" class="continue-shopping">productos destacados</a>!</p>
+                    </div>
+                `;
+                wishlistGrid.innerHTML = emptyMessage;
+            }
+        }
+        
+        // Evento para el botón de añadir al carrito
+        document.querySelectorAll('.btn-add-cart').forEach(button => {
+            button.addEventListener('click', function() {
+                // Aquí iría la lógica para añadir al carrito
+                alert('Producto añadido al carrito');
+            });
+        });
+    </script>
+</body>
+</html>

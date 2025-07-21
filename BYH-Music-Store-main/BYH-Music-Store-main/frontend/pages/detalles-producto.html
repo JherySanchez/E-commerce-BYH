@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style-tienda.css">
+  <link rel="stylesheet" href="../css/style-detalles-producto.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="product-emergente active">
+    <div class="product-content">
+      <button class="close-emergente" title="Cerrar">
+        <i class="fas fa-times"></i>
+      </button>
+
+      <div class="product-grid">
+        <div class="product-image-section">
+          <div class="product-image-container">
+            <img class="product-image" src="../assets/default-placeholder.png" alt="Cargando imagen del producto...">
+          </div>
+          <button class="btn-wishlist" id="addToWishlist" title="Agregar a lista de deseos">
+            <i class="fas fa-heart"></i>
+          </button>
+        </div>
+
+        <div class="product-details">
+          <h2 class="product-title">Cargando nombre...</h2>
+          <div class="product-meta">
+            <p class="product-price">S/. --.--</p>
+            <div class="product-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star-half-alt"></i>
+              <span>(4.5/5)</span>
+            </div>
+          </div>
+
+          <div class="product-description">
+            <p>Cargando descripción...</p>
+          </div>
+
+          <div class="product-options">
+            <div class="quantity-selector">
+              <label for="quantity">Cantidad:</label>
+              <div class="quantity-controls">
+                <button class="quantity-btn" data-action="decrease">-</button>
+                <input type="number" id="quantity" value="1" min="1" max="1" disabled>
+                <button class="quantity-btn" data-action="increase">+</button>
+              </div>
+            </div>
+          </div>
+
+          <div class="product-actions">
+            <button class="btn-primary" id="addToCart" disabled>
+              <i class="fas fa-shopping-cart"></i>
+              <span id="addToCartText">Cargando...</span>
+            </button>
+            <button class="btn-secondary" id="buyNow" disabled>
+              <i class="fas fa-bolt"></i>
+              Comprar ahora
+            </button>
+          </div>
+
+          <div class="product-info">
+            <div class="info-item">
+              <i class="fas fa-truck"></i>
+              <span>Envío gratis en compras mayores a S/. 100</span>
+            </div>
+            <div class="info-item">
+              <i class="fas fa-shield-alt"></i>
+              <span>Garantía de calidad</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { addToCart } from '../js/cartService.js'; // Asegúrate de que la ruta sea correcta
+
+    // --- INICIO DE LA LÓGICA DE LA PÁGINA ---
+
+    // Variable para almacenar los datos del producto una vez cargados
+    let productData = null;
+
+    /**
+     * Función para actualizar la cantidad en el input
+     * @param {number} change - El cambio a aplicar (+1 o -1)
+     */
+    function updateQuantity(change) {
+        const quantityInput = document.getElementById('quantity');
+        const maxStock = parseInt(quantityInput.max, 10) || 1;
+        let currentValue = parseInt(quantityInput.value, 10);
+        let newValue = currentValue + change;
+
+        // Asegurarse de que el valor esté dentro de los límites (1 y el stock máximo)
+        if (newValue < 1) newValue = 1;
+        if (newValue > maxStock) newValue = maxStock;
+
+        quantityInput.value = newValue;
+    }
+
+    /**
+     * Función para cargar los datos del producto desde la API
+     */
+    async function loadProductDetails() {
+        const API_URL = 'http://localhost:3000/api';
+        const params = new URLSearchParams(window.location.search);
+        const productId = params.get('id');
+
+        if (!productId) {
+            console.error('No se proporcionó un ID de producto.');
+            window.location.href = 'tienda.html';
+            return;
+        }
+
+        try {
+            const response = await fetch(`${API_URL}/products/${productId}`);
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(errorData.message || `Error ${response.status}`);
+            }
+            
+            productData = await response.json();
+            
+            // Actualizar la UI con los datos del producto
+            document.querySelector('.product-title').textContent = productData.name;
+            document.querySelector('.product-price').textContent = `S/. ${productData.price ? parseFloat(productData.price).toFixed(2) : '--.--'}`;
+            document.querySelector('.product-image').src = productData.image_url || '../assets/default-placeholder.png';
+            document.querySelector('.product-description p').textContent = productData.description;
+            document.getElementById('quantity').max = productData.stock;
+
+            // Habilitar botones de acción una vez que los datos están listos
+            const addToCartBtn = document.getElementById('addToCart');
+            const buyNowBtn = document.getElementById('buyNow');
+            const addToCartText = document.getElementById('addToCartText');
+            if (addToCartBtn && buyNowBtn && addToCartText) {
+                addToCartBtn.disabled = false;
+                document.getElementById('quantity').disabled = false;
+                buyNowBtn.disabled = false;
+                addToCartText.textContent = 'Agregar al carrito';
+            }
+
+        } catch (error) {
+            console.error('Error al cargar el producto:', error.message);
+            alert('No se pudo cargar la información del producto. Redirigiendo a la tienda.');
+            window.location.href = 'tienda.html';
+        }
+    }
+
+    /**
+     * Función para inicializar todos los event listeners de la página
+     */
+    function initEventListeners() {
+        // Botón de cerrar (X)
+        const closeButton = document.querySelector('.close-emergente');
+        closeButton.addEventListener('click', () => {
+            // Vuelve a la página anterior en el historial (que debería ser la tienda). Es más intuitivo.
+            window.history.back();
+        });
+
+        // Botones de cantidad (+ y -)
+        document.querySelectorAll('.quantity-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const action = button.dataset.action; // 'increase' o 'decrease'
+                updateQuantity(action === 'increase' ? 1 : -1); // Más robusto que usar textContent
+            });
+        });
+
+        // Botón "Agregar al carrito"
+        document.getElementById('addToCart').addEventListener('click', () => {
+            if (!productData) return;
+            const quantity = parseInt(document.getElementById('quantity').value, 10);
+            if (quantity > 0) {
+                addToCart(productData, quantity);
+                alert(`${quantity} x "${productData.name}" se ha(n) agregado al carrito.`);
+            }
+        });
+
+        // Botón "Comprar ahora"
+        document.getElementById('buyNow').addEventListener('click', () => {
+            window.location.href = 'detalles-compra.html';
+        });
+
+        // Cerrar con la tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // También usamos history.back() para consistencia.
+                window.history.back();
+            }
+        });
+    }
+
+    // --- INICIO DE LA EJECUCIÓN ---
+    // Como el script está al final del body, los elementos ya existen.
+    loadProductDetails();
+    initEventListeners();
+  </script>
+  <!-- Carga componentes como header/footer al final -->
+  <script src="../js/load-components.js" defer></script>
+</body>
+
+</html>

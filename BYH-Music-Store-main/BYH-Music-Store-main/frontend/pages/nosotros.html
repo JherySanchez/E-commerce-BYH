@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYH - Nosotros</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-nosotros.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/load-components.js" defer></script>
+  </head>
+  <body>
+    <!-- Header se cargará aquí dinámicamente con el load-components.js -->
+  <main>
+    <!-- Sección de Nosotros -->
+    <div id="nosotros-container" class="container">
+      <div class="nosotros-header">
+        <h2>Sobre Nosotros</h2>
+        <nav class="nosotros-nav">
+          <ul>
+            <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+            <li><a href="#mision" class="nav-link">Misión</a></li>
+            <li><a href="#vision" class="nav-link">Visión</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="nosotros-content">
+        <div id="nosotros" class="content-section.active">
+          <h3>Nosotros</h3>
+          <p>BANG YOUR HEAD Metal Music Store (o simplemente BYH music store) es una tienda que lleva más de 10 años compartiendo la pasión por el metal con su comunidad. Nació del amor por la música pesada, cuando su fundador decidió crear un espacio donde la cultura metalera tuviera un lugar propio.</p>
+          <p>La tienda se dedica a la venta de parches y CDs de bandas de metal, tanto nacionales como internacionales. Con el tiempo, se ha convertido en un punto de encuentro para quienes disfrutan de este estilo de vida: desde coleccionistas hasta músicos y fans de todas las edades.</p>
+          <p>Lo que hace diferente a BYH music store es su conexión con la comunidad. No es una tienda cualquiera: es un lugar donde se vive el metal, se conversa sobre bandas, se intercambian recomendaciones y se celebra la identidad que este género representa.</p>
+          <p>Ahora, después de 10 años de recorrido, y gracias a este proyecto que estamos desarrollando l su página web (Tienda virtual). Es un paso importante para que más personas puedan conocerla, visitarla y formar parte de este mundo.</p>
+        </div>
+        <div id="mision" class="content-section.active">
+          <h3>Misión</h3>
+          <p>Celebrar y preservar la cultura del metal a través de parches, CDs originales y exclusivos. Nos dedicamos a conectar a los fans con las bandas que aman, ofreciendo productos que expresen su identidad y apoyando la escena metalera local e internacional. ¡Somos el puente entre los artistas y los que llevan el metal en el alma!</p>
+        </div>
+        <div id="vision" class="content-section.active">
+          <h3>Visión</h3>
+          <p>Convertirnos en el epicentro de la cultura metalera, expandiéndonos a nivel nacional e internacional sin perder nuestra esencia. En 5 años, seremos reconocidos no solo como tienda, sino como comunidad que organiza eventos, edita contenidos y colabora con bandas emergentes. ¡Nuestra página web es el primer paso para unir a los metaleros del mundo, donde el género se vive, se comparte y nunca muere!</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        // Obtener todos los enlaces de navegación
+        const navLinks = document.querySelectorAll('.nosotros-nav .nav-link');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        // Función para mostrar una sección específica
+        function showSection(sectionId) {
+          // Remover la clase 'active' de todas las secciones y enlaces
+          contentSections.forEach(section => section.classList.remove('active'));
+          navLinks.forEach(link => link.classList.remove('active'));
+
+          // Agregar la clase 'active' a la sección y enlace seleccionados
+          const targetSection = document.getElementById(sectionId);
+          const targetLink = document.querySelector(`a[href="#${sectionId}"]`);
+          
+          if (targetSection) {
+            targetSection.classList.add('active');
+            // Desplazamiento suave a la sección
+            targetSection.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+          
+          if (targetLink) {
+            targetLink.classList.add('active');
+          }
+        }
+
+
+        // Agregar evento de clic a cada enlace de navegación
+        navLinks.forEach(link => {
+          link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const sectionId = this.getAttribute('href').substring(1);
+            showSection(sectionId);
+          });
+        });
+
+        // Mostrar la primera sección por defecto
+        showSection('nosotros');
+      });
+    </script>
+
+    <!-- Footer se cargará aquí dinámicamente con el load-components.js -->
+  
+  <!-- Scripts principales -->
+  <script src="../js/main.js"></script>
+  </body>
+</html>

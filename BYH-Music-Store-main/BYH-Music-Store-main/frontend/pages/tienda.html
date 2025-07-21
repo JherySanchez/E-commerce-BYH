@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BYH - Tienda</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-tienda.css">
+    <link rel="stylesheet" href="../css/style-marquee.css"> <!-- Nuevo CSS para el banner -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/load-components.js" defer></script>
+    
+    <!-- 3. El script específico para esta página -->
+    <script src="../js/tienda.js" defer></script>
+    
+  </head>
+  <body>
+    <!-- Header se cargará aquí dinámicamente -->
+  <main>
+    <div id="banner-carousel-container"></div>
+
+    <div class="container tienda-main-wrapper"> <div class="tienda-layout">
+            <section id="tienda-container">
+                <div class="tienda-header">
+                    <h1>Parches</h1>
+                </div>
+                <div class="products-grid"></div>
+            </section>
+
+            <aside id="promotions-sidebar">
+                </aside>
+        </div>
+    </div>
+</main>
+  
+    <!-- Footer se cargará aquí dinámicamente -->
+    <script src="../js/main.js"></script>
+    <!-- 2. Carga del script que llenará el contenedor del banner -->
+    <script src="../js/banner-loader.js" defer></script>
+    <script src="../js/promotion-loader.js" defer></script>
+</body>
+</html>

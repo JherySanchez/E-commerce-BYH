@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - BYH Music Store</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/style-contacto.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="../js/load-components.js" defer></script>
+</head>
+<body>
+    <!-- Header se cargará aquí dinámicamente con el load-components.js -->
+    <main>
+    <div class="contacto-container">
+        <h1>Contáctanos</h1>
+        <p class="contacto-descripcion">¿Tienes alguna consulta, sugerencia o quieres trabajar con nosotros? ¡Escríbenos!</p>
+        
+        <form id="formularioContacto" class="formulario-contacto">
+            <div class="form-group">
+                <label for="tipoContacto">Tipo de contacto *</label>
+                <select id="tipoContacto" name="tipoContacto" required>
+                    <option value="" disabled selected>Selecciona una opción</option>
+                    <option value="empresa">Empresa</option>
+                    <option value="colaborador">Colaborador</option>
+                    <option value="persona">Persona Natural</option>
+                </select>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="nombres">Nombres *</label>
+                    <input type="text" id="nombres" name="nombres" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellidos">Apellidos *</label>
+                    <input type="text" id="apellidos" name="apellidos" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Correo electrónico *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="telefono">Teléfono</label>
+                    <input type="tel" id="telefono" name="telefono">
+                </div>
+            </div>
+
+            <div id="empresaFields" class="empresa-fields">
+                <div class="form-group">
+                    <label for="empresa">Nombre de la empresa *</label>
+                    <input type="text" id="empresa" name="empresa">
+                </div>
+                <div class="form-group">
+                    <label for="ruc">RUC</label>
+                    <input type="text" id="ruc" name="ruc">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="asunto">Asunto *</label>
+                <select id="asunto" name="asunto" required>
+                    <option value="" disabled selected>Selecciona un asunto</option>
+                    <option value="consulta">Consulta general</option>
+                    <option value="soporte">Soporte técnico</option>
+                    <option value="ventas">Información de ventas</option>
+                    <option value="colaboracion">Oportunidad de colaboración</option>
+                    <option value="trabajo">Oferta de trabajo</option>
+                    <option value="otro">Otro</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mensaje">Mensaje *</label>
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto la <a href="politicas-empresa.html#politica-privacidad" class="link" target="_blank">Política de Privacidad</a> y los <a href="terminos-condiciones.html" class="link" target="_blank">Términos de Uso</a> *</label>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn-enviar">Enviar mensaje</button>
+            </div>
+        </form>
+
+        <div class="informacion-contacto">
+            <h2>Otras formas de contacto</h2>
+            <div class="contacto-item">
+                <i class="fas fa-envelope"></i>
+                <div>
+                    <h3>Correo electrónico</h3>
+                    <p>contacto@byhstore.com</p>
+                </div>
+            </div>
+            <div class="contacto-item">
+                <i class="fas fa-phone"></i>
+                <div>
+                    <h3>Teléfono</h3>
+                    <p>+51 987 654 321</p>
+                </div>
+            </div>
+            <div class="contacto-item">
+                <i class="fas fa-map-marker-alt"></i>
+                <div>
+                    <h3>Dirección</h3>
+                    <p>Av. Principal 123, Lima, Perú</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer se cargará aquí dinámicamente con el load-components.js -->
+    
+    <!-- Scripts principales -->
+    <script src="../js/contacto.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
